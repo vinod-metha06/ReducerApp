@@ -23,7 +23,7 @@ const Home = () => {
 
   const handleChange = async () => {
     dispatch(dispatchGetDataLoading());
-    console.log('clicked..');
+   
     const res = await getData(parseInt(text!));
     if (res != 'error') {
       dispatch(dispatchGetDataLoaded(res));
