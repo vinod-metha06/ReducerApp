@@ -9,7 +9,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {
-  dispatchGetData,
   dispatchGetDataLoaded,
   dispatchGetDataLoadedError,
   dispatchGetDataLoading,
@@ -23,7 +22,7 @@ const Home = () => {
 
   const handleChange = async () => {
     dispatch(dispatchGetDataLoading());
-   
+
     const res = await getData(parseInt(text!));
     if (res != 'error') {
       dispatch(dispatchGetDataLoaded(res));
@@ -43,13 +42,15 @@ const Home = () => {
         />
       </View>
       <View>
-        <Button title="click" onPress={handleChange} />
+        <Button  title="click" onPress={handleChange} />
       </View>
       <View>
         {state?.loading ? (
           <ActivityIndicator size={40} color="blue" />
         ) : (
-          <Text>{state?.data.title}</Text>
+          <View style={styles.card}>
+            <Text>{state?.data.title}</Text>
+          </View>
         )}
       </View>
     </View>
@@ -64,7 +65,15 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 40,
     marginVertical: 12,
+    padding:10,
+    paddingStart:30,
     width: '90%',
+  },
+  card: {
+    borderRadius: 20,
+    backgroundColor: '#dde3ed',
+    padding: 20,
+    margin: 10,
   },
 });
 
